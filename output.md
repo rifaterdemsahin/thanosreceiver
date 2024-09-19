@@ -10,6 +10,10 @@
 # Error Thanos Listener Twice
 ![image](https://github.com/user-attachments/assets/ba2a9856-ddf4-49ea-a12b-91a4667ab5e1)
 
+# Fix The build and push with repository marker to the image
+![image](https://github.com/user-attachments/assets/9701b56e-f5e8-4d95-a0b9-ba47344c94c1)
+
+
 # ACS Run and See
 ![image](https://github.com/user-attachments/assets/5828c726-6ae3-488a-a711-e3d723534cd4)
 
