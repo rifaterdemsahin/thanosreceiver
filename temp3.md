@@ -1,0 +1,45 @@
+trigger:
+- main
+
+resources:
+- repo: self
+
+variables:
+  system.debug: true
+  tag: '$(Build.BuildId)'   # Use Build ID as a tag
+  imageName: 'myimage'       # Full Docker Hub image name with username
+  repoName: 'pexabo/thanoslistener'
+
+stages:
+- stage: Build
+  displayName: Build and Push Docker Image
+  jobs:
+  - job: Build
+    displayName: Build Docker Image
+    pool:
+      vmImage: ubuntu-latest   # Use Ubuntu as the build agent
+    steps:
+    # Login to Docker Hub
+    - task: Docker@2
+      displayName: 'Login to Docker Hub'
+      inputs:
+        command: login
+        containerRegistry: 'DockerHub'   # Ensure your Docker Hub service connection is properly set
+
+    # Build the Docker image
+    - task: Docker@2
+      displayName: 'Build Docker Image'
+      inputs:
+        command: build
+        dockerfile: '$(Build.SourcesDirectory)/Dockerfile'   # Ensure Dockerfile path is correct
+        tags: |
+          $(imageName):$(tag)   # Use the dynamic Build ID as a tag for better traceability
+
+    # Push the Docker image to Docker Hub
+    - task: Docker@2
+      displayName: 'Push Docker Image'
+      inputs:
+        command: push
+        repository: $(repoName)   # Push the built image to Docker Hub
+        tags: |
+          $(imageName):$(tag)    # Push the tagged image to the repository
