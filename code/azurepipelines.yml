@@ -1,0 +1,42 @@
+# Docker
+# Build a Docker image
+# https://docs.microsoft.com/azure/devops/pipelines/languages/docker
+
+trigger:
+- main
+
+resources:
+- repo: self
+
+variables:
+  tag: '$(Build.BuildId)'
+  dockerHubImageName: 'pexabo/thanoslistener'
+  dockerHubUsername: '$(dockerHubUsername)'   # Set as pipeline secrets
+  dockerHubPassword: '$(dockerHubPassword)'   # Set as pipeline secrets
+
+stages:
+- stage: Build
+  displayName: Build image
+  jobs:
+  - job: Build
+    displayName: Build
+    pool:
+      vmImage: ubuntu-latest
+      parallel: 1
+    steps:
+    - task: Docker@2
+      displayName: Build an image
+      inputs:
+        command: build
+        dockerfile: '$(Build.SourcesDirectory)/dockerfile'
+        tags: |
+          $(tag)
+    # Push the Docker image to ACR
+    - task: Docker@2
+      displayName: 'Push Docker Image'
+      inputs:
+        command: push
+        repository: $(imageName)
+        tags: |
+          $(imageName):$(Build.BuildId)
+          $(imageName):latest
