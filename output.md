@@ -4,7 +4,8 @@
 # Container Registry Create
 ![image](https://github.com/user-attachments/assets/a725b185-5075-43ac-aa7e-208ff59d426b)
 
-# Container Registry Publish
+# Container Registry Secrets and Publish
+![image](https://github.com/user-attachments/assets/4cd0f575-28bf-4ff4-a31a-de79819f1575)
 
 
 # ACS Run and See
