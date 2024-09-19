@@ -7,6 +7,8 @@
 # Container Registry Secrets and Publish
 ![image](https://github.com/user-attachments/assets/4cd0f575-28bf-4ff4-a31a-de79819f1575)
 
+# Error Thanos Listener Twice
+![image](https://github.com/user-attachments/assets/ba2a9856-ddf4-49ea-a12b-91a4667ab5e1)
 
 # ACS Run and See
 ![image](https://github.com/user-attachments/assets/5828c726-6ae3-488a-a711-e3d723534cd4)
